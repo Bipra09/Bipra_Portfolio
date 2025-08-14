@@ -286,6 +286,25 @@ body.light-theme .dropdown-item {
 body.light-theme .dropdown-item:hover {
     background: #f8f9fa;
 }
+/* ===== Dark Theme Mobile Contrast Fixes ===== */
+body.dark-theme {
+    color: #f5f5f5; /* Brighter text */
+}
+body.dark-theme p, 
+body.dark-theme .section-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+}
+/* ===== Light Theme Resume Button Visibility Fix ===== */
+body.light-theme #resume-dropdown.btn.btn-secondary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+}
+body.light-theme #resume-dropdown.btn.btn-secondary:hover {
+    background: linear-gradient(135deg, #5563d6, #6b3d9a);
+    color: #fff;
+}
+
 
 /* ===== TRANSLATION FADE EFFECTS ===== */
 .fade-transition {
