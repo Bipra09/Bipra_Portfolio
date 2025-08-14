@@ -613,6 +613,8 @@ const navbar = document.querySelector('.navbar');
 const navLinks = document.querySelectorAll('.nav-link');
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+// Ensure mobile nav is closed on page load
+if (navMenu) navMenu.classList.remove('active');
 
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
