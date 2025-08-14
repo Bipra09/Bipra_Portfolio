@@ -34,14 +34,15 @@ body {
     pointer-events: none;
     z-index: 9999;
     transition: all 0.2s ease;
-    display: none; /* Hide on mobile by default */
 }
-@media (min-width: 769px) {
+
+@media (max-width: 768px) {
     .cursor,
     .cursor-follower {
-        display: block;
+        display: none !important; /* Fully remove on small screens */
     }
 }
+
 
 .cursor {
     background: #00ff88;
@@ -1899,3 +1900,4 @@ section {
         animation-duration: 3s;
     }
 }
+
