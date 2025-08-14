@@ -43,7 +43,6 @@ body {
     }
 }
 
-
 .cursor {
     background: #00ff88;
     mix-blend-mode: difference;
@@ -166,6 +165,23 @@ body.light-mode .nav-link {
 .nav-link.active::after {
     width: 100%;
 }
+/* ===== Mobile Nav Menu Position Fix ===== */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        transition: left 0.3s ease;
+    }
+    .nav-menu.active {
+        left: 0;
+    }
+}
+
 
 /* ===== NAVIGATION CONTROLS (Language Toggle + Theme Toggle) ===== */
 .nav-controls {
@@ -1900,4 +1916,9 @@ section {
         animation-duration: 3s;
     }
 }
-
+/* ===== iOS Full-Screen Overlay Kill Switch ===== */
+@supports (-webkit-touch-callout: none) {
+    [style*="position: fixed"][style*="top: 0"][style*="left: 0"][style*="right: 0"][style*="bottom: 0"] {
+        display: none !important;
+    }
+}
