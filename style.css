@@ -75,7 +75,6 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    /* 3. Slimmer navbar */
     padding: 0.5rem 0;
     min-height: 50px;
     background: rgba(10, 10, 10, 0.95);
@@ -99,7 +98,6 @@ body {
 }
 
 .nav-logo a {
-    /* 3. Slimmer navbar - smaller logo */
     font-size: 1.1rem;
     font-weight: 700;
     color: #fff;
@@ -121,7 +119,6 @@ body {
     color: #ccc;
     text-decoration: none;
     font-weight: 500;
-    /* 3. Slimmer navbar - smaller links */
     padding: 0.3rem 0.8rem;
     font-size: 0.95rem;
     transition: all 0.3s ease;
@@ -170,8 +167,6 @@ body.light-mode .nav-link {
 }
 
 /* ===== NAVIGATION CONTROLS (Language Toggle + Theme Toggle) ===== */
-/* 5. Language toggle and navigation controls */
-/* ===== ENHANCED NAVIGATION CONTROLS ===== */
 .nav-controls {
     display: flex;
     align-items: center;
@@ -293,7 +288,6 @@ body.light-theme .dropdown-item:hover {
 }
 
 /* ===== TRANSLATION FADE EFFECTS ===== */
-/* 5. Translation fade effect */
 .fade-transition {
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -370,7 +364,6 @@ body.light-theme .dropdown-item:hover {
 }
 
 /* ===== HERO TITLE SPACING FIXES ===== */
-/* 1. Reduce distance between "Hi, I'm" and name */
 .hero-title { 
     margin-bottom: -10px !important; 
     line-height: 1.1 !important; 
@@ -384,23 +377,23 @@ body.light-theme .dropdown-item:hover {
     animation: glow 2s ease-in-out infinite alternate;
     margin-top: 5px !important;
 }
+
 .name-gradient {
-  background: linear-gradient(135deg, #00ff88, #00d4ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: glow 2s ease-in-out infinite alternate;
+    background: linear-gradient(135deg, #00ff88, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s ease-in-out infinite alternate;
 }
 
 .name .emoji {
-  background: none !important;
-  -webkit-background-clip: initial !important;
-  -webkit-text-fill-color: initial !important;
-  color: #ffffff;
-  font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
-  display: inline-block;
-  vertical-align: baseline;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    color: #ffffff;
+    font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+    display: inline-block;
+    vertical-align: baseline;
 }
-
 
 @keyframes glow {
     from { filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.3)); }
@@ -592,7 +585,7 @@ body.light-theme .dropdown-item:hover {
 
 /* Force emoji rendering */
 .emoji, .wave {
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif !important;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif !important;
 }
 
 .wave, .emoji {
@@ -719,7 +712,6 @@ section {
 /* ===== PROJECTS SECTION ===== */
 .projects {
     background: #0a0a0a;
-    /* 2. Reduce space between projects and skills */
     margin-bottom: 30px;
     padding-bottom: 30px;
 }
@@ -910,7 +902,6 @@ section {
 /* ===== SKILLS SECTION ===== */
 .skills {
     background: #111;
-    /* 2. Reduce space between projects and skills */
     margin-top: 30px;
     padding-top: 30px;
     padding-bottom: 60px;
@@ -1206,10 +1197,47 @@ section {
     color: #fff;
 }
 
-/* ===== MOBILE RESPONSIVE FIXES ===== */
+/* ===== ENHANCED MOBILE RESPONSIVE STYLES ===== */
 
-/* Fix navigation controls layout on mobile */
+/* Tablet devices (768px to 1024px) */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .experience-timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 60px;
+        margin-right: 0;
+        text-align: left;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::before,
+    .timeline-item:nth-child(even) .timeline-content::before {
+        left: -60px;
+        right: auto;
+    }
+}
+
+/* Large Mobile devices (481px to 768px) */
 @media (max-width: 768px) {
+    /* Navigation optimizations */
     .nav-container {
         flex-wrap: wrap;
         gap: 0.5rem;
@@ -1230,7 +1258,7 @@ section {
     .nav-controls {
         order: 2;
         display: flex;
-        gap: 0.4rem;
+        gap: 0.5rem;
         flex-wrap: nowrap;
         align-items: center;
         width: auto;
@@ -1239,21 +1267,19 @@ section {
     
     #language-toggle,
     #theme-toggle {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+        padding: 0.35rem 0.7rem;
         white-space: nowrap;
         min-width: fit-content;
     }
     
-    /* Fix dropdown positioning on mobile */
     .dropdown-menu {
         right: 0;
         left: auto;
-        min-width: 160px;
+        min-width: 180px;
         transform: translateX(0);
     }
     
-    /* Adjust navbar for better mobile layout */
     .navbar {
         padding: 0.6rem 0;
         min-height: 60px;
@@ -1263,13 +1289,167 @@ section {
         top: 60px;
         height: calc(100vh - 60px);
     }
+    
+    /* Hero section optimizations */
+    .hero {
+        min-height: calc(100vh - 60px);
+        padding-top: 60px;
+    }
+    
+    .hero-container {
+        padding: 0 20px;
+    }
+    
+    .hero-content {
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .greeting {
+        font-size: clamp(1.1rem, 3.5vw, 1.4rem) !important;
+        margin-bottom: 0.3rem;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+        margin-bottom: -8px !important;
+        line-height: 1.1 !important;
+    }
+    
+    .name {
+        font-size: clamp(2.2rem, 7vw, 3.5rem) !important;
+        margin-top: 0 !important;
+        margin-bottom: 0.8rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+        margin-bottom: 1.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1.05rem;
+        margin-bottom: 1.8rem;
+        line-height: 1.7;
+        padding: 0 10px;
+        max-width: 100%;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 2rem;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 14px 24px;
+        text-align: center;
+        font-size: 1rem;
+    }
+    
+    .hero-social {
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .hero-social a {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .image-container {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+    }
+    
+    /* Section optimizations */
+    section {
+        padding: 70px 0;
+    }
+    
+    .container {
+        padding: 30px 20px;
+    }
+    
+    .section-title {
+        font-size: clamp(2rem, 6vw, 2.4rem);
+    }
+    
+    .section-subtitle {
+        font-size: 1.05rem;
+        padding: 0 20px;
+    }
+    
+    /* About section optimizations */
+    .about-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .stat {
+        padding: 1rem;
+    }
+    
+    .stat h3 {
+        font-size: 1.8rem;
+    }
+    
+    /* Projects section optimizations */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 15px;
+    }
+    
+    .project-card {
+        margin: 0 auto;
+        max-width: 400px;
+    }
+    
+    .project-categories {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        padding: 0 15px;
+    }
+    
+    .category-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Skills section optimizations */
+    .skills-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    /* Contact section optimizations */
+    .contact-content {
+        gap: 2.5rem;
+        padding: 0 15px;
+    }
+    
+    .contact-form {
+        padding: 1.8rem;
+    }
+    
+    .contact-social {
+        justify-content: center;
+    }
 }
 
-/* Extra small devices */
+/* Small Mobile devices (376px to 480px) */
 @media (max-width: 480px) {
     .nav-container {
-        padding: 0 10px;
-        gap: 0.3rem;
+        padding: 0 12px;
+        gap: 0.4rem;
     }
     
     .nav-logo a {
@@ -1278,14 +1458,14 @@ section {
     
     #language-toggle,
     #theme-toggle {
-        font-size: 0.7rem;
-        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
     }
     
-    /* Hero section improvements */
+    /* Hero section fine-tuning */
     .hero {
-        min-height: 100vh;
-        padding-top: 80px;
+        min-height: calc(100vh - 60px);
+        padding-top: 70px;
     }
     
     .hero-container {
@@ -1293,48 +1473,46 @@ section {
     }
     
     .hero-content {
-        gap: 1.5rem;
+        gap: 1.8rem;
         text-align: center;
     }
     
-    /* Better text sizing hierarchy */
     .greeting {
-        font-size: clamp(1rem, 3vw, 1.3rem) !important;
-        margin-bottom: 0.1rem;
+        font-size: clamp(1rem, 4vw, 1.3rem) !important;
+        margin-bottom: 0.2rem;
     }
     
     .hero-title {
-        font-size: clamp(1.6rem, 4vw, 2.2rem) !important;
-        margin-bottom: -5px !important;
+        font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important;
+        margin-bottom: -6px !important;
         line-height: 1.1 !important;
     }
     
     .name {
-        font-size: clamp(2rem, 6vw, 3rem) !important;
+        font-size: clamp(2rem, 8vw, 3.2rem) !important;
         margin-top: 0 !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.6rem !important;
         line-height: 1.1 !important;
     }
     
     .hero-subtitle {
-        font-size: clamp(1.1rem, 3vw, 1.3rem);
+        font-size: clamp(1.1rem, 4vw, 1.3rem);
         margin-bottom: 1rem;
     }
     
     .hero-description {
         font-size: 1rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.6rem;
         line-height: 1.6;
-        padding: 0 10px;
+        padding: 0 8px;
     }
     
-    /* Improved button layout */
     .hero-buttons {
         flex-direction: column;
-        gap: 0.8rem;
+        gap: 0.9rem;
         width: 100%;
         max-width: 300px;
-        margin: 0 auto 1.5rem;
+        margin: 0 auto 1.8rem;
     }
     
     .btn {
@@ -1344,11 +1522,10 @@ section {
         font-size: 0.95rem;
     }
     
-    /* Better social icons layout */
     .hero-social {
         justify-content: center;
-        gap: 0.8rem;
-        margin-top: 1rem;
+        gap: 0.9rem;
+        margin-top: 1.2rem;
     }
     
     .hero-social a {
@@ -1356,25 +1533,23 @@ section {
         height: 45px;
     }
     
-    /* Image container adjustments */
     .image-container {
-        width: 220px;
-        height: 220px;
+        width: 240px;
+        height: 240px;
         margin: 0 auto;
     }
     
-    /* Section spacing improvements */
+    /* Section improvements */
     section {
         padding: 60px 0;
     }
     
     .container {
-        padding: 20px 15px;
+        padding: 25px 15px;
     }
     
-    /* Better section titles */
     .section-title {
-        font-size: clamp(1.8rem, 5vw, 2.2rem);
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
     }
     
     .section-subtitle {
@@ -1382,38 +1557,37 @@ section {
         padding: 0 15px;
     }
     
-    /* About section mobile fixes */
+    /* About section fine-tuning */
     .about-stats {
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        gap: 1.2rem;
     }
     
     .stat {
-        padding: 0.8rem;
+        padding: 0.9rem;
     }
     
     .stat h3 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
-    /* Projects section mobile fixes */
+    /* Projects section fine-tuning */
     .projects-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 10px;
+        gap: 1.8rem;
+        padding: 0 12px;
     }
     
     .project-card {
         margin: 0 auto;
-        max-width: 350px;
+        max-width: 340px;
     }
     
-    /* Category buttons mobile layout */
     .project-categories {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.5rem;
-        padding: 0 10px;
+        gap: 0.6rem;
+        padding: 0 12px;
     }
     
     .category-btn {
@@ -1421,14 +1595,14 @@ section {
         font-size: 0.85rem;
     }
     
-    /* Contact section mobile fixes */
+    /* Contact section fine-tuning */
     .contact-content {
         gap: 2rem;
-        padding: 0 10px;
+        padding: 0 12px;
     }
     
     .contact-form {
-        padding: 1.5rem;
+        padding: 1.6rem;
     }
     
     /* Footer improvements */
@@ -1442,14 +1616,91 @@ section {
     }
 }
 
-/* Ultra small devices (320px and below) */
+/* Extra Small Mobile devices (320px and below) */
+@media (max-width: 375px) {
+    .nav-container {
+        padding: 0 10px;
+    }
+    
+    .nav-logo a {
+        font-size: 0.9rem;
+    }
+    
+    #language-toggle,
+    #theme-toggle {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .hero-container {
+        padding: 0 12px;
+    }
+    
+    .greeting {
+        font-size: clamp(0.95rem, 4.5vw, 1.2rem) !important;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.4rem, 6vw, 2rem) !important;
+    }
+    
+    .name {
+        font-size: clamp(1.8rem, 9vw, 2.8rem) !important;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 4.5vw, 1.2rem);
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        padding: 0 5px;
+    }
+    
+    .btn {
+        padding: 11px 18px;
+        font-size: 0.9rem;
+    }
+    
+    .image-container {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .hero-social a {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .section-title {
+        font-size: clamp(1.6rem, 7vw, 2rem);
+    }
+    
+    .projects-grid {
+        padding: 0 10px;
+    }
+    
+    .project-card {
+        max-width: 320px;
+    }
+    
+    .contact-content {
+        padding: 0 10px;
+    }
+    
+    .contact-form {
+        padding: 1.4rem;
+    }
+}
+
+/* Ultra Small devices (320px and below) */
 @media (max-width: 320px) {
     .nav-container {
         padding: 0 8px;
     }
     
     .nav-logo a {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     #language-toggle,
@@ -1467,30 +1718,55 @@ section {
     }
     
     .hero-title {
-        font-size: 1.4rem !important;
+        font-size: 1.3rem !important;
     }
     
     .name {
-        font-size: 1.8rem !important;
+        font-size: 1.7rem !important;
     }
     
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .hero-description {
         font-size: 0.9rem;
-        padding: 0 5px;
+        padding: 0 3px;
     }
     
     .btn {
         padding: 10px 16px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     .image-container {
         width: 200px;
         height: 200px;
+    }
+    
+    .hero-social a {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .projects-grid {
+        padding: 0 8px;
+    }
+    
+    .project-card {
+        max-width: 300px;
+    }
+    
+    .contact-content {
+        padding: 0 8px;
+    }
+    
+    .contact-form {
+        padding: 1.2rem;
     }
 }
 
@@ -1498,7 +1774,7 @@ section {
 @media (max-width: 768px) and (orientation: landscape) {
     .hero {
         min-height: auto;
-        padding: 80px 0 40px;
+        padding: 70px 0 30px;
     }
     
     .hero-content {
@@ -1508,8 +1784,8 @@ section {
     }
     
     .image-container {
-        width: 180px;
-        height: 180px;
+        width: 200px;
+        height: 200px;
     }
     
     .hero-buttons {
@@ -1521,6 +1797,22 @@ section {
     .btn {
         width: auto;
         padding: 10px 20px;
+    }
+    
+    .greeting {
+        font-size: 1rem !important;
+    }
+    
+    .hero-title {
+        font-size: 1.6rem !important;
+    }
+    
+    .name {
+        font-size: 2rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
     }
 }
 
@@ -1544,5 +1836,47 @@ section {
 @supports (-webkit-touch-callout: none) {
     .hero {
         min-height: -webkit-fill-available;
+    }
+}
+
+/* Improved text readability on small screens */
+@media (max-width: 480px) {
+    .hero-description,
+    .section-subtitle,
+    .about-text p,
+    .project-description,
+    .timeline-content p {
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+    }
+}
+
+/* Better button touch targets on mobile */
+@media (max-width: 768px) {
+    .btn,
+    .category-btn,
+    .hero-social a,
+    .contact-social a,
+    .project-link {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Optimize animations for lower-end devices */
+@media (max-width: 768px) {
+    .profile-image,
+    .project-card,
+    .btn {
+        transition: transform 0.2s ease;
+    }
+    
+    .wave {
+        animation-duration: 0.8s;
+        animation-iteration-count: 5;
+    }
+    
+    .glow {
+        animation-duration: 3s;
     }
 }
