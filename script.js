@@ -664,6 +664,207 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// ===== CELEBRATION EFFECTS ===== 
+let celebrationIndex = 0;
+
+// 8 Different celebration themes
+const celebrations = [
+    // 1. Classic Confetti Rain
+    () => {
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#00ff88', '#00d4ff', '#ff6b6b', '#ffd93d', '#6bcf7f']
+        });
+        showCelebrationMessage("🎊 Amazing Choice! Thanks for downloading!", '#00ff88');
+    },
+    
+    // 2. Fireworks Explosion
+    () => {
+        const duration = 3 * 1000;
+        const animationEnd = Date.now() + duration;
+        
+        (function frame() {
+            confetti({
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                zIndex: 0,
+                particleCount: 5,
+                origin: {
+                    x: Math.random(),
+                    y: Math.random() - 0.2
+                },
+                colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff']
+            });
+            
+            if (Date.now() < animationEnd) {
+                requestAnimationFrame(frame);
+            }
+        }());
+        showCelebrationMessage("🎆 Boom! Fireworks for you!", '#ff6b6b');
+    },
+    
+    // 3. Side Cannons
+    () => {
+        const end = Date.now() + 2.5 * 1000;
+        
+        (function frame() {
+            confetti({
+                particleCount: 7,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: ['#00ff88', '#00d4ff']
+            });
+            confetti({
+                particleCount: 7,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: ['#ff6b6b', '#ffd93d']
+            });
+            
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
+        showCelebrationMessage("🎯 Double Cannon Blast!", '#00d4ff');
+    },
+    
+    // 4. Heart Shapes
+    () => {
+        const scalar = 2;
+        const heart = confetti.shapeFromText({ text: '❤️', scalar });
+        
+        confetti({
+            shapes: [heart],
+            scalar: scalar,
+            particleCount: 50,
+            spread: 100,
+            startVelocity: 45,
+            gravity: 0.8
+        });
+        showCelebrationMessage("💖 You're awesome! Hearts for you!", '#ff69b4');
+    },
+    
+    // 5. Spiral Effect
+    () => {
+        const duration = 2.5 * 1000;
+        const animationEnd = Date.now() + duration;
+        let skew = 1;
+        
+        (function frame() {
+            const timeLeft = animationEnd - Date.now();
+            const ticks = Math.max(200, 500 * (timeLeft / duration));
+            skew = Math.max(0.8, skew - 0.001);
+            
+            confetti({
+                particleCount: 3,
+                startVelocity: 0,
+                ticks: ticks,
+                gravity: 0.5,
+                origin: {
+                    x: Math.random(),
+                    y: Math.random() * skew - 0.2
+                },
+                colors: ['#00ff88', '#00d4ff', '#ffd93d'],
+                shapes: ['circle'],
+                scalar: 0.8
+            });
+            
+            if (timeLeft > 0) {
+                requestAnimationFrame(frame);
+            }
+        }());
+        showCelebrationMessage("🌀 Spiral Magic! Downloading...", '#00d4ff');
+    },
+    
+    // 6. Stars and Sparkles
+    () => {
+        const star = confetti.shapeFromText({ text: '⭐', scalar: 2 });
+        const sparkle = confetti.shapeFromText({ text: '✨', scalar: 1.5 });
+        
+        confetti({
+            shapes: [star, sparkle],
+            particleCount: 80,
+            spread: 120,
+            startVelocity: 50,
+            gravity: 1.2,
+            drift: 0,
+            colors: ['#ffd700', '#ffffff', '#00ff88']
+        });
+        showCelebrationMessage("⭐ You're a star! Thanks for downloading!", '#ffd700');
+    },
+    
+    // 7. Rainbow Cascade
+    () => {
+        const duration = 3 * 1000;
+        const animationEnd = Date.now() + duration;
+        
+        (function frame() {
+            confetti({
+                particleCount: 5,
+                startVelocity: 10,
+                spread: 200,
+                origin: { 
+                    x: Math.random(),
+                    y: 0
+                },
+                colors: ['#ff0000', '#ff8c00', '#ffd700', '#00ff00', '#00bfff', '#8a2be2'],
+                gravity: 0.6,
+                scalar: 1.2
+            });
+            
+            if (Date.now() < animationEnd) {
+                requestAnimationFrame(frame);
+            }
+        }());
+        showCelebrationMessage("🌈 Rainbow Cascade! Beautiful choice!", '#ff8c00');
+    },
+    
+    // 8. Emoji Party
+    () => {
+        const emojis = ['🎉', '🎊', '🎈', '🎁', '🥳', '🌟', '💫', '🎭'];
+        const shapes = emojis.map(emoji => confetti.shapeFromText({ text: emoji, scalar: 2 }));
+        
+        confetti({
+            shapes: shapes,
+            particleCount: 60,
+            spread: 100,
+            startVelocity: 30,
+            gravity: 0.8,
+            scalar: 1
+        });
+        showCelebrationMessage("🥳 Emoji Party Time! You rock!", '#ff6b6b');
+    }
+];
+
+function triggerCelebration() {
+    celebrations[celebrationIndex % celebrations.length]();
+    celebrationIndex++;
+}
+
+function showCelebrationMessage(message, color) {
+    const notification = document.createElement('div');
+    notification.className = 'celebration-notification';
+    notification.textContent = message;
+    notification.style.background = `linear-gradient(135deg, ${color}, ${color}aa)`;
+    notification.style.color = color === '#ffd700' || color === '#ffd93d' ? '#000' : '#fff';
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'celebrationPulse 0.3s ease reverse';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 2500);
+}
+
 // ===== DOWNLOAD DROPDOWN FUNCTIONALITY ===== 
 function setupDownloadDropdown() {
     const resumeDropdown = document.getElementById('resume-dropdown');
@@ -682,12 +883,17 @@ function setupDownloadDropdown() {
             }
         });
         
-        // Handle dropdown item clicks
+        // Handle dropdown item clicks - WITH CELEBRATIONS!
         const dropdownItems = resumeMenu.querySelectorAll('.dropdown-item');
         dropdownItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 resumeMenu.classList.remove('show');
                 const fileName = item.textContent.trim();
+                
+                // 🎉 TRIGGER CELEBRATION FIRST
+                triggerCelebration();
+                
+                // Then show the original notification
                 showNotification(`Downloading ${fileName}...`, 'success');
             });
         });
