@@ -2009,8 +2009,8 @@ function setupContactForm() {
             submitButton.textContent = currentLanguage === 'en' ? 'Sending...' : '送信中...';
             submitButton.disabled = true;
             
-            // Prepare template parameters for EmailJS - FIXED PARAMETERS
-            const templateParams = {
+            // Template parameters for the main email (to you)
+            const mainEmailParams = {
                 from_name: name,
                 from_email: email,
                 to_email: 'bipra.biswas309@gmail.com',
@@ -2019,14 +2019,30 @@ function setupContactForm() {
                 reply_to: email
             };
             
-            // Send email using EmailJS - CORRECT SERVICE AND TEMPLATE IDs
-            emailjs.send('service_4kkvxfm', 'template_n40m3bj', templateParams)
+            // Template parameters for auto-reply email (matching your EmailJS template variables)
+            const autoReplyParams = {
+                email: email,        // {{email}} in your template
+                name: name,          // {{name}} in your template  
+                subject: subject,    // {{subject}} in your template
+                message: message     // {{message}} in your template
+            };
+            
+            // Send main email first
+            emailjs.send('service_4kkvxfm', 'template_n40m3bj', mainEmailParams)
                 .then(function(response) {
-                    console.log('Email sent successfully!', response.status, response.text);
+                    console.log('Main email sent successfully!', response.status, response.text);
+                    
+                    // Send auto-reply email
+                    return emailjs.send('service_4kkvxfm', 'template_kj52jcb', autoReplyParams);
+                })
+                .then(function(response) {
+                    console.log('Auto-reply sent successfully!', response.status, response.text);
+                    
+                    // Show success message
                     showNotification(
                         currentLanguage === 'en' 
-                            ? '🎉 Message sent successfully! I\'ll get back to you soon.' 
-                            : '🎉 メッセージが送信されました！すぐにお返事いたします。',
+                            ? '🎉 Message sent successfully! Auto-reply sent to sender. I\'ll get back to you soon.' 
+                            : '🎉 メッセージが送信されました！自動返信も送信済み。すぐにお返事いたします。',
                         'success'
                     );
                     
@@ -2036,7 +2052,8 @@ function setupContactForm() {
                     // Trigger celebration effect for EMAIL SUCCESS
                     triggerEmailCelebration();
                     
-                }, function(error) {
+                })
+                .catch(function(error) {
                     console.error('Failed to send email:', error);
                     showNotification(
                         currentLanguage === 'en' 
@@ -2053,7 +2070,6 @@ function setupContactForm() {
         });
     }
 }
-
 // Email validation function
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
