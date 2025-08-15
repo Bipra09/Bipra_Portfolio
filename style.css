@@ -1605,3 +1605,39 @@ section {
         padding: 10px 20px;
     }
 }
+/* ===== CELEBRATION NOTIFICATION STYLES ===== */
+.celebration-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 255, 136, 0.95);
+    color: #000;
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+    animation: celebrationPulse 0.5s ease;
+    pointer-events: none;
+}
+
+@keyframes celebrationPulse {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Mobile responsiveness for celebration */
+@media (max-width: 768px) {
+    .celebration-notification {
+        font-size: 1.2rem;
+        padding: 1.5rem 2rem;
+        max-width: 90%;
+        word-wrap: break-word;
+    }
+}
+
