@@ -408,7 +408,8 @@ body.light-theme #resume-dropdown.btn.btn-secondary:hover {
 .name { 
     display: block;
     background: linear-gradient(135deg, #00ff88, #00d4ff);
-    -webkit-background-clip: text;
+    background-clip: text;              /* Standard property */
+    -webkit-background-clip: text;      /* WebKit browsers */
     -webkit-text-fill-color: transparent;
     animation: glow 2s ease-in-out infinite alternate;
     margin-top: 5px !important;
@@ -416,14 +417,16 @@ body.light-theme #resume-dropdown.btn.btn-secondary:hover {
 
 .name-gradient {
     background: linear-gradient(135deg, #00ff88, #00d4ff);
-    -webkit-background-clip: text;
+    background-clip: text;              /* Standard property */
+    -webkit-background-clip: text;      /* WebKit browsers */
     -webkit-text-fill-color: transparent;
     animation: glow 2s ease-in-out infinite alternate;
 }
 
 .name .emoji {
     background: none !important;
-    -webkit-background-clip: initial !important;
+    background-clip: initial !important;          /* Standard reset */
+    -webkit-background-clip: initial !important;  /* WebKit reset */
     -webkit-text-fill-color: initial !important;
     color: #ffffff;
     font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
@@ -549,7 +552,7 @@ body.light-theme #resume-dropdown.btn.btn-secondary:hover {
     border-radius: 50%;
     background: linear-gradient(135deg, #00ff88, #00d4ff);
     opacity: 0.3;
-    blur: 20px;
+    filter: blur(20px);  /* ✅ Correct way */
     animation: pulse 3s ease-in-out infinite;
 }
 
@@ -1746,9 +1749,11 @@ body.light-theme .hero-title {
 
 body.light-theme .name {
     background: linear-gradient(135deg, #fff, #f093fb);
-    -webkit-background-clip: text;
+    background-clip: text;              /* ✅ Standard property */
+    -webkit-background-clip: text;      /* ✅ WebKit (Chrome, Safari, Edge) */
     -webkit-text-fill-color: transparent;
 }
+
 
 body.light-theme .hero-subtitle {
     color: rgba(255, 255, 255, 0.9);
